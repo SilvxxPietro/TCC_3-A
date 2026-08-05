@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Reviews - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="star-icon">★</span>
+            <div class="logo-text">
+                <span class="pro">PRO</span>
+                <span class="reviews">REVIEWS</span>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="🔎 Buscar jogos...">
+        </div>
+        <button class="button-entrar" onclick="Entrar()">Entrar</button>
+    </header>
+
+    <!-- BANNER PRINCIPAL ROXO -->
+    <section class="hero-banner">
+        <h1>Bem-vindo ao PROREVIEWS</h1>
+        <p>Descubra, avalie e compartilhe seus jogos favoritos</p>
+    </section>
+
+    <!-- BARRA DE FILTROS -->
+    <section class="filter-bar">
+        <div class="left-filters">
+            <button class="filter-btn icon-btn">⏳</button>
+            <select class="filter-select">
+                <option>Todas as Plataformas</option>
+                <option>PlayStation 5</option>
+                <option>PlayStation 4</option>
+                <option>PC</option>
+                <option>Xbox Series X/S</option>
+                <option>Xbox One</option>
+                <option>Mobile</option>
+                <option>Nintendo Switch</option>
+                <option>Wii U</option>
+            </select>
+            <select class="filter-select">
+                <option>Todos os Gêneros</option>
+                <option>AÇÃO</option>
+                <option>FPS</option>
+                <option>Sobrevivência</option>
+                <option>Multiplayer</option>
+                <option>Battle Royale</option>
+            </select>
+        </div>
+        <div class="right-filters">
+            <select class="filter-select">
+                <option>Maior Avaliação</option>
+                <option>Menor Avaliação</option>
+                <option>Mais Avaliação</option>
+                <option>Menor preço</option>
+                <option>Maior preço</option>
+            </select>
+        </div>
+    </section>
+    <script src="index.js"></script>
+
+</body>
+</html>

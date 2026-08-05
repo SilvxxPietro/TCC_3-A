@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PROREVIEWS</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <span class="star">★</span>
+            <h1>PROREVIEWS</h1>
+        </div>
+
+        <div class="card">
+
+            <div class="forms">
+
+                <!-- LOGIN -->
+                <div class="form-box">
+                    <h2>Entrar</h2>
+
+                    <form id="formLogin">
+                        <input type="email" id="emailLogin" placeholder="Email" required>
+                        <input type="password" id="senhaLogin" placeholder="Senha" required>
+
+                        <button type="submit">Entrar</button>
+                    </form>
+
+                    <p id="mensagemLogin"></p>
+                </div>
+
+                <!-- CADASTRO -->
+                <div class="form-box">
+                    <h2>Criar Conta</h2>
+
+                    <form id="formCadastro">
+                        <input type="text" id="nomeCadastro" placeholder="Nome" required>
+                        <input type="email" id="emailCadastro" placeholder="Email" required>
+                        <input type="password" id="senhaCadastro" placeholder="Senha" required>
+
+                        <button type="submit">Cadastrar</button>
+                    </form>
+
+                    <p id="mensagemCadastro"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+
+</body>
+</html>
