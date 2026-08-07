@@ -15,7 +15,7 @@ body{
 
 .container{
     width:100%;
-    max-width:1000px;
+    max-width:450px; /* Reduzido de 1000px para alinhar o card vertical único */
     padding:20px;
 }
 
@@ -27,7 +27,7 @@ body{
 }
 
 .star{
-    color:#8B5CF6;
+    color:#8b00ff;
     font-size:35px;
     margin-right:10px;
 }
@@ -44,19 +44,48 @@ body{
     padding:40px;
 }
 
-.forms{
-    display:flex;
-    gap:40px;
+.forms {
+    display: block; 
+    width: 100%;
 }
 
-.form-box{
-    flex:1;
+/* Esconde as caixas de formulário por padrão */
+.form-box {
+    display: none !important;
+    width: 100%;
 }
 
-.form-box h2{
-    color:white;
-    text-align:center;
-    margin-bottom:25px;
+/* Mostra apenas a caixa ativa */
+.form-box.active {
+    display: block !important;
+}
+
+/* NOVO: Estiliza e centraliza os títulos internos h2 */
+.form-box h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+/* Estilo do bloco de texto alternativo */
+.toggle-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* Estilo do link de alternância (Roxo mais claro para dar leitura no fundo escuro) */
+.toggle-text a {
+    color: #8b00ff !important; 
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.toggle-text a:hover {
+    text-decoration: underline;
 }
 
 input{
@@ -68,6 +97,13 @@ input{
     background:#374151;
     color:white;
     font-size:15px;
+    outline: none; /* Evita bordas estranhas nativas ao clicar */
+}
+
+/* Adiciona um efeito amigável quando o usuário clica para digitar */
+input:focus {
+    background: #4b5563;
+    box-shadow: 0 0 0 2px #8b00ff;
 }
 
 input::placeholder{
@@ -79,15 +115,20 @@ button{
     padding:14px;
     border:none;
     border-radius:10px;
-    background:#8B5CF6;
+    background:#8b00ff;
     color:white;
     font-size:16px;
     cursor:pointer;
     transition:.3s;
+    font-weight: bold;
 }
 
 button:hover{
-    background:#7C3AED;
+    background:#8b00ff;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 p{
@@ -97,13 +138,53 @@ p{
 }
 
 @media(max-width:768px){
-
-    .forms{
-        flex-direction:column;
-    }
-
     .card{
         padding:25px;
     }
+}
 
+/* Caixa que organiza as informações  */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    padding: 24px;
+    background: #374151; /* Mantém o mesmo cinza dos inputs */
+    border-radius: 12px;
+}
+
+/* Avatar temporário */
+.avatar {
+    font-size: 55px;
+    margin-bottom: 12px;
+}
+
+/* Nome do usuário */
+#nomeUsuarioPerfil {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* E-mail do usuário */
+.sub-text {
+    font-size: 14px;
+    color: #9ca3af !important;
+    margin-top: 6px !important;
+    text-align: center;
+}
+
+/* Botão Sair - Estilo de alerta/perigo (Vermelho) */
+.btn-sair {
+    background: #ef4444; 
+    color: #ffffff;
+}
+
+/* Feedback visual ao passar o mouse no botão sair */
+.btn-sair:hover {
+    background: #dc2626;
 }

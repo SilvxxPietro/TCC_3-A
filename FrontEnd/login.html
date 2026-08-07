@@ -20,7 +20,7 @@
             <div class="forms">
 
                 <!-- LOGIN -->
-                <div class="form-box">
+                <div class="form-box active" id="boxLogin">
                     <h2>Entrar</h2>
 
                     <form id="formLogin">
@@ -31,10 +31,11 @@
                     </form>
 
                     <p id="mensagemLogin"></p>
+                    <p class="toggle-text">Não tem uma conta? <a href="#" id="irParaCadastro">Cadastre-se</a></p>
                 </div>
 
                 <!-- CADASTRO -->
-                <div class="form-box">
+                <div class="form-box" id="boxCadastro">
                     <h2>Criar Conta</h2>
 
                     <form id="formCadastro">
@@ -46,6 +47,17 @@
                     </form>
 
                     <p id="mensagemCadastro"></p>
+                    <p class="toggle-text">Já tem uma conta? <a href="#" id="irParaLogin">Entre aqui</a></p>
+                </div>
+
+                <div class="form-box" id="boxPerfil">
+                    <h2>Minha Conta</h2>
+                    <div class="user-info">
+                        <div class="avatar">👤</div>
+                        <p id="nomeUsuarioPerfil">Nome do Usuário</p>
+                        <p id="emailUsuarioPerfil" class="sub-text">usuario@email.com</p>
+                    </div>
+                    <button id="btnSair" class="btn-sair">Sair da Conta</button>
                 </div>
 
             </div>

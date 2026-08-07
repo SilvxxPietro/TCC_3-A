@@ -20,7 +20,27 @@
         <div class="search-container">
             <input type="text" placeholder="🔎 Buscar jogos...">
         </div>
-        <button class="button-entrar" onclick="Entrar()">Entrar</button>
+        
+        <!-- ÁREA DINÂMICA DE AUTENTICAÇÃO -->
+        <div class="auth-area">
+            <!-- Botão Entrar original (será controlado por JS) -->
+            <button id="navBtnEntrar" class="btn-entrar" onclick="Entrar()">Entrar</button>
+
+            <!-- Container do Perfil -->
+            <div id="navPerfil" class="nav-profile">
+                <div class="profile-trigger">
+                    <!-- CORREÇÃO: Mudado para div para aplicar o círculo roxo do CSS -->
+                    <div class="nav-avatar">👤</div>
+                    <span id="navNomeUsuario" class="nav-username">USUÁRIO</span>
+                </div>
+                <!-- Menu flutuante que aparece apenas no Clique (JS controla adicionando a classe 'show') -->
+                <div class="profile-dropdown">
+                    <p id="navEmailUsuario" class="dropdown-email">user@email.com</p>
+                    <hr class="dropdown-divider">
+                    <button id="navBtnSair" class="dropdown-logout-btn">Sair da Conta</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- BANNER PRINCIPAL ROXO -->

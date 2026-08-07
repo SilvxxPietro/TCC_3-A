@@ -1,10 +1,46 @@
+// SEUS SELETORES ORIGINAIS
 const formLogin = document.getElementById("formLogin");
 const mensagemLogin = document.getElementById("mensagemLogin");
-
 const formCadastro = document.getElementById("formCadastro");
 const mensagemCadastro = document.getElementById("mensagemCadastro");
 
-// LOGIN
+const boxLogin = document.getElementById('boxLogin');
+const boxCadastro = document.getElementById('boxCadastro');
+const irParaCadastro = document.getElementById('irParaCadastro');
+const irParaLogin = document.getElementById('irParaLogin');
+
+// --- FUNÇÃO DE REDIRECIONAMENTO SE JÁ ESTIVER LOGADO ---
+function verificarEstadoLogin() {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    // Se o usuário já estiver logado e entrar na página de login, manda ele direto para a principal
+    if (usuarioLogado) {
+        window.location.href = "index2.html";
+    } else {
+        // Garante que o formulário de login fique visível se não houver dados
+        if (boxCadastro) boxCadastro.classList.remove('active');
+        if (boxLogin) boxLogin.classList.add('active');
+    }
+}
+
+// Executa a checagem assim que a página de login abre
+verificarEstadoLogin();
+
+// ALTERNÂNCIA DE TELAS (Ir para cadastro)
+irParaCadastro.addEventListener('click', function(event) {
+    event.preventDefault(); 
+    boxLogin.classList.remove('active');
+    boxCadastro.classList.add('active');
+});
+
+// ALTERNÂNCIA DE TELAS (Voltar para o login)
+irParaLogin.addEventListener('click', function(event) {
+    event.preventDefault(); 
+    boxCadastro.classList.remove('active');
+    boxLogin.classList.add('active');
+});
+
+// LOGIN (Modificado para salvar os dados e mudar de página)
 formLogin.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -21,13 +57,20 @@ formLogin.addEventListener("submit", async (event) => {
         });
 
         const dados = await resposta.json();
-
         mensagemLogin.innerText = dados.mensagem;
         console.log(dados);
 
-        // Só entra se o login der certo
         if (resposta.ok) {
+            // SALVA OS DADOS DO USUÁRIO NO NAVEGADOR
+            const dadosUsuario = {
+                nome: dados.nome || email.split('@')[0].toUpperCase(),
+                email: email
+            };
+            localStorage.setItem('usuarioLogado', JSON.stringify(dadosUsuario));
+            
             formLogin.reset();
+            
+            // REDIRECIONA PARA A SUA PÁGINA PRINCIPAL
             window.location.href = "index2.html";
         }
 
@@ -37,7 +80,7 @@ formLogin.addEventListener("submit", async (event) => {
     }
 });
 
-// CADASTRO
+// CADASTRO (Inalterado)
 formCadastro.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -55,13 +98,13 @@ formCadastro.addEventListener("submit", async (event) => {
         });
 
         const dados = await resposta.json();
-
         mensagemCadastro.innerText = dados.mensagem;
         console.log(dados);
 
-        // Se cadastrou com sucesso, limpa os campos
         if (resposta.ok) {
             formCadastro.reset();
+            boxCadastro.classList.remove('active');
+            boxLogin.classList.add('active');
         }
 
     } catch (erro) {
