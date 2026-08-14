@@ -3,9 +3,10 @@ const mysql = require("mysql2");
 const conexao = mysql.createConnection({
     host:"localhost",
     user: "root",
-    password: "#Pi123456",
-    database: "tcc"
+    password: "123456",
+    database: "tcc_3_a"
 });
+
 
 conexao.connect((erro) => {
     if(erro){
