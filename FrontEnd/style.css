@@ -244,12 +244,17 @@ body {
   
   h2 {
     margin-top: 40px;
+<<<<<<< HEAD
     border-bottom: 2px solid #ccc;
+=======
+    border-bottom: 2px solid #111827;
+>>>>>>> eb54f6e79dca39a95aae3064e7560169a74da76b
     padding-bottom: 10px;
   }
   
   .container-flex {
     display: flex;
+<<<<<<< HEAD
     background-color: #eee;
     padding: 10px;
     margin-bottom: 20px;
@@ -257,13 +262,40 @@ body {
   
   .item-flex {
     background-color: #2196f3;
+=======
+    background-color: #111827;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px; 
+  }
+  
+  .item-flex {
+    background-color: #1f2937;
+>>>>>>> eb54f6e79dca39a95aae3064e7560169a74da76b
     color: white;
     padding: 15px;
     margin: 5px;
     text-align: center;
     font-size: 1.2em;
+<<<<<<< HEAD
   }
   
+=======
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Deixa a animação suave com duração de 0.3 segundos */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .item-flex:hover {
+    transform: translateY(-8px); /* Move o card um pouco para cima */
+    box-shadow: 0 10px 20px rgba(237, 235, 240, 0.15); /* Aumenta a sombra */
+  }
+
+#img-card{
+    border-radius: 15px;
+}
+>>>>>>> eb54f6e79dca39a95aae3064e7560169a74da76b
 
   
   /* 11. Exemplo Prático: Layout Responsivo */
