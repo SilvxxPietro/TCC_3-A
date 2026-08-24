@@ -232,21 +232,58 @@ body {
     cursor: pointer;
 }
 
-/* Estilos Gerais */
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  section {
-    margin-bottom: 40px;
-  }
-  
-  h2 {
-    margin-top: 30px;
-    border-bottom: 2px solid #111827;
-    padding-bottom: 10px;
-  }
+/* CATÁLOGO DE JOGOS */
+.games-section {
+    max-width: 1280px;
+    margin: 0 auto 48px;
+    padding: 0 40px;
+}
+
+.section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 8px 0 20px;
+}
+
+.section-header h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.section-subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* Os cards ocupam o mesmo espaço e ficam lado a lado. */
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.card-game {
+    display: flex;
+    flex: 1 1 calc((100% - 48px) / 3);
+    flex-direction: column;
+    min-width: 0;
+    min-height: 410px;
+    overflow: hidden;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-game:hover {
+    transform: translateY(-5px);
+    border-color: #8b00ff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+}
   
   .card-img-container {
     width: 100%;
@@ -318,6 +355,7 @@ body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    min-height: 44px;
 }
  
 .game-meta {
@@ -510,9 +548,36 @@ body {
     .filter-bar {
         padding: 16px 20px;
     }
+    .games-section {
+        padding: 0 20px;
+    }
     .games-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 16px;
+    }
+    .card-game {
+        flex-basis: calc((100% - 16px) / 2);
+    }
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 520px) {
+    .filter-bar,
+    .left-filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .filter-bar {
+        gap: 10px;
+        padding: 16px 20px;
+    }
+    .filter-select {
+        width: 100%;
+    }
+    .card-game {
+        flex-basis: 100%;
     }
 }
  
