@@ -1,14 +1,13 @@
 const conexao = require("../database/conexao");
 
 const usuarioModel = {
-    cadastrar: (nome, email, senha, callback) => {
-        const sql = 'INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)';
-        conexao.query(sql, [nome, email, senha], callback)
+    cadastrar: (nome, email, senhaHash, callback) => {
+        const sql = "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)";
+        conexao.query(sql, [nome, email, senhaHash], callback);
     },
-
-    login: (email, senha, callback) => {
-        const sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
-        conexao.query(sql, [email, senha], callback);
+    buscarPorEmail: (email, callback) => {
+        const sql = "SELECT id_usuario AS id, nome, email, senha FROM usuario WHERE email = ? LIMIT 1";
+        conexao.query(sql, [email], callback);
     }
 };
 

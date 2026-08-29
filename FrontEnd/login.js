@@ -1,114 +1,37 @@
-// SEUS SELETORES ORIGINAIS
-const formLogin = document.getElementById("formLogin");
-const mensagemLogin = document.getElementById("mensagemLogin");
-const formCadastro = document.getElementById("formCadastro");
-const mensagemCadastro = document.getElementById("mensagemCadastro");
+const formLogin = document.getElementById("formLogin"), mensagemLogin = document.getElementById("mensagemLogin");
+const formCadastro = document.getElementById("formCadastro"), mensagemCadastro = document.getElementById("mensagemCadastro");
+const boxLogin = document.getElementById("boxLogin"), boxCadastro = document.getElementById("boxCadastro");
 
-const boxLogin = document.getElementById('boxLogin');
-const boxCadastro = document.getElementById('boxCadastro');
-const irParaCadastro = document.getElementById('irParaCadastro');
-const irParaLogin = document.getElementById('irParaLogin');
-
-// --- FUNÇÃO DE REDIRECIONAMENTO SE JÁ ESTIVER LOGADO ---
-function verificarEstadoLogin() {
-    const usuarioLogado = localStorage.getItem('usuarioLogado');
-
-    // Se o usuário já estiver logado e entrar na página de login, manda ele direto para a principal
-    if (usuarioLogado) {
-        window.location.href = "index2.html";
-    } else {
-        // Garante que o formulário de login fique visível se não houver dados
-        if (boxCadastro) boxCadastro.classList.remove('active');
-        if (boxLogin) boxLogin.classList.add('active');
-    }
+async function sessaoValida() {
+    const token = sessionStorage.getItem("authToken");
+    if (!token) return false;
+    const resposta = await fetch(`${window.API_BASE_URL}/usuarios/me`, { headers: { Authorization: `Bearer ${token}` } });
+    if (!resposta.ok) sessionStorage.removeItem("authToken");
+    return resposta.ok;
 }
 
-// Executa a checagem assim que a página de login abre
-verificarEstadoLogin();
+(async () => {
+    if (await sessaoValida()) return window.location.href = "index2.html";
+    boxCadastro.classList.remove("active"); boxLogin.classList.add("active");
+})();
 
-// ALTERNÂNCIA DE TELAS (Ir para cadastro)
-irParaCadastro.addEventListener('click', function(event) {
-    event.preventDefault(); 
-    boxLogin.classList.remove('active');
-    boxCadastro.classList.add('active');
-});
+document.getElementById("irParaCadastro").addEventListener("click", (e) => { e.preventDefault(); boxLogin.classList.remove("active"); boxCadastro.classList.add("active"); });
+document.getElementById("irParaLogin").addEventListener("click", (e) => { e.preventDefault(); boxCadastro.classList.remove("active"); boxLogin.classList.add("active"); });
 
-// ALTERNÂNCIA DE TELAS (Voltar para o login)
-irParaLogin.addEventListener('click', function(event) {
-    event.preventDefault(); 
-    boxCadastro.classList.remove('active');
-    boxLogin.classList.add('active');
-});
-
-// LOGIN (Modificado para salvar os dados e mudar de página)
-formLogin.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const email = document.getElementById("emailLogin").value;
-    const senha = document.getElementById("senhaLogin").value;
-
+formLogin.addEventListener("submit", async (e) => {
+    e.preventDefault();
     try {
-        const resposta = await fetch("http://localhost:3000/usuarios/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, senha })
-        });
-
-        const dados = await resposta.json();
-        mensagemLogin.innerText = dados.mensagem;
-        console.log(dados);
-
-        if (resposta.ok) {
-            // SALVA OS DADOS DO USUÁRIO NO NAVEGADOR
-            const dadosUsuario = {
-                nome: dados.nome || email.split('@')[0].toUpperCase(),
-                email: email
-            };
-            localStorage.setItem('usuarioLogado', JSON.stringify(dadosUsuario));
-            
-            formLogin.reset();
-            
-            // REDIRECIONA PARA A SUA PÁGINA PRINCIPAL
-            window.location.href = "index2.html";
-        }
-
-    } catch (erro) {
-        mensagemLogin.innerText = "Erro ao conectar com o servidor!";
-        console.log(erro);
-    }
+        const resposta = await fetch(`${window.API_BASE_URL}/usuarios/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: document.getElementById("emailLogin").value, senha: document.getElementById("senhaLogin").value }) });
+        const dados = await resposta.json(); mensagemLogin.innerText = dados.mensagem;
+        if (resposta.ok) { sessionStorage.setItem("authToken", dados.token); formLogin.reset(); window.location.href = "index2.html"; }
+    } catch { mensagemLogin.innerText = "Erro ao conectar com o servidor."; }
 });
 
-// CADASTRO (Inalterado)
-formCadastro.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const nome = document.getElementById("nomeCadastro").value;
-    const email = document.getElementById("emailCadastro").value;
-    const senha = document.getElementById("senhaCadastro").value;
-
+formCadastro.addEventListener("submit", async (e) => {
+    e.preventDefault();
     try {
-        const resposta = await fetch("http://localhost:3000/usuarios/cadastro", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ nome, email, senha })
-        });
-
-        const dados = await resposta.json();
-        mensagemCadastro.innerText = dados.mensagem;
-        console.log(dados);
-
-        if (resposta.ok) {
-            formCadastro.reset();
-            boxCadastro.classList.remove('active');
-            boxLogin.classList.add('active');
-        }
-
-    } catch (erro) {
-        mensagemCadastro.innerText = "Erro ao conectar com o servidor!";
-        console.log(erro);
-    }
+        const resposta = await fetch(`${window.API_BASE_URL}/usuarios/cadastro`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nome: document.getElementById("nomeCadastro").value, email: document.getElementById("emailCadastro").value, senha: document.getElementById("senhaCadastro").value }) });
+        const dados = await resposta.json(); mensagemCadastro.innerText = dados.mensagem;
+        if (resposta.ok) { formCadastro.reset(); boxCadastro.classList.remove("active"); boxLogin.classList.add("active"); }
+    } catch { mensagemCadastro.innerText = "Erro ao conectar com o servidor."; }
 });

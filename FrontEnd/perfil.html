@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Reviews - Meu Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="star-icon">★</span>
+            <div class="logo-text">
+                <span class="pro">PRO</span>
+                <span class="reviews">REVIEWS</span>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="🔎 Buscar jogos...">
+        </div>
+        
+        <!-- ÁREA DINÂMICA DE AUTENTICAÇÃO -->
+        <div class="auth-area">
+            <button id="navBtnEntrar" class="btn-entrar" onclick="Entrar()">Entrar</button>
+
+            <div id="navPerfil" class="nav-profile">
+                <div class="profile-trigger">
+                    <div class="nav-avatar">👤</div>
+                    <span id="navNomeUsuario" class="nav-username">USUÁRIO</span>
+                </div>
+                <div class="profile-dropdown">
+                    <p id="navEmailUsuario" class="dropdown-email">user@email.com</p>
+                    <hr class="dropdown-divider">
+                    <button id="navBtnSair" class="dropdown-logout-btn">Sair da Conta</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL DO PERFIL -->
+    <main class="profile-container">
+        
+        <!-- CARTÃO DO PERFIL -->
+        <aside class="profile-sidebar">
+            <div class="profile-avatar-big">👤</div>
+            <h2 id="profileName" class="profile-name"></h2>
+            <p id="profileEmail" class="profile-email"></p>
+            
+            <div class="profile-stats">
+                <div class="stat-box">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Avaliações</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Favoritos</span>
+                </div>
+            </div>
+
+            <button class="btn-edit-profile">Editar Perfil</button>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL (HISTÓRICO) -->
+        <section class="profile-content">
+            <h2>Minhas Avaliações</h2>
+            
+            <div class="reviews-list">
+                <!-- Exemplo de Avaliação 1 -->
+                <div class="review-item">
+                    <img src="./fotos_jogos/devilMayCryjpg.jpg" alt="Devil May Cry" class="review-game-img">
+                    <div class="review-details">
+                        <h>Devil May Cry</h3>
+                        <div class="review-rating">⭐⭐⭐⭐<span>(5/5)</span></div>
+                        <p class="review-text">"História sensacional, combate fluido e trilha sonora impecável. Um dos melhores jogos de ação da geração!"</p>
+                    </div>
+                </div>
+
+
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

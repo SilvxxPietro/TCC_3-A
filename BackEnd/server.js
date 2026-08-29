@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
  
 const usuarioRoutes = require("./routers/usuarioRoutes");
+const avaliacaoRoutes = require("./routers/avaliacaoRoutes");
  
 const app = express();
  
@@ -19,7 +21,10 @@ app.get("/", (req, res) => {
  
 // Rotas da API
 app.use("/usuarios", usuarioRoutes);
+app.use("/avaliacoes", avaliacaoRoutes);
  
-app.listen(3000, () => {
-    console.log("Servidor rodando em http://localhost:3000");
+const PORT = Number(process.env.PORT || 3000);
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
