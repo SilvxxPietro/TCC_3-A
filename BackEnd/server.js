@@ -22,6 +22,13 @@ app.get("/", (req, res) => {
 // Rotas da API
 app.use("/usuarios", usuarioRoutes);
 app.use("/avaliacoes", avaliacaoRoutes);
+app.get("/jogos/steam", async (_req, res) => {
+    try {
+        res.json(await require("./services/steamService").carregarCatalogo());
+    } catch {
+        res.status(503).json({ mensagem: "Steam indisponível no momento. Tente novamente.", jogos: [] });
+    }
+});
  
 const PORT = Number(process.env.PORT || 3000);
 

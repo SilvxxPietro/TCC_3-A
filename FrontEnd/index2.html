@@ -10,15 +10,15 @@
 
     <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
     <header class="navbar">
-        <div class="logo">
+       <a href="index2.html" class="logo">
             <span class="star-icon">★</span>
             <div class="logo-text">
                 <span class="pro">PRO</span>
                 <span class="reviews">REVIEWS</span>
             </div>
-        </div>
+        </a>
         <div class="search-container">
-            <input type="text" placeholder="🔎 Buscar jogos...">
+            <input id="buscaJogos" type="search" aria-label="Buscar jogos por nome" placeholder="🔎 Buscar jogos...">
         </div>
         
         <!-- ÁREA DINÂMICA DE AUTENTICAÇÃO -->
@@ -37,6 +37,7 @@
                 <div class="profile-dropdown">
                     <p id="navEmailUsuario" class="dropdown-email">user@email.com</p>
                     <hr class="dropdown-divider">
+                    <a class="dropdown-link" href="perfil.html">Meu perfil</a>
                     <button id="navBtnSair" class="dropdown-logout-btn">Sair da Conta</button>
                 </div>
             </div>
@@ -52,34 +53,34 @@
     <!-- BARRA DE FILTROS -->
     <section class="filter-bar">
         <div class="left-filters">
-            <button class="filter-btn icon-btn">⏳</button>
-            <select class="filter-select">
-                <option>Todas as Plataformas</option>
-                <option>PlayStation 5</option>
-                <option>PlayStation 4</option>
-                <option>PC</option>
-                <option>Xbox Series X/S</option>
-                <option>Xbox One</option>
-                <option>Mobile</option>
-                <option>Nintendo Switch</option>
-                <option>Wii U</option>
+            <button id="limparFiltros" class="filter-btn" type="button">Limpar filtros</button>
+            <select id="filtroPlataforma" class="filter-select" aria-label="Filtrar por plataforma">
+                <option value="">Todas as Plataformas</option>
+                <option value="ps5">PlayStation 5</option>
+                <option value="ps4">PlayStation 4</option>
+                <option value="pc">PC</option>
+                <option value="xbox">Xbox</option>
+                <option value="mobile">Mobile</option>
+                <option value="switch">Nintendo Switch</option>
             </select>
-            <select class="filter-select">
-                <option>Todos os Gêneros</option>
-                <option>AÇÃO</option>
-                <option>FPS</option>
-                <option>Sobrevivência</option>
-                <option>Multiplayer</option>
-                <option>Battle Royale</option>
+            <select id="filtroGenero" class="filter-select" aria-label="Filtrar por gênero">
+                <option value="">Todos os Gêneros</option>
+                <option value="acao">Ação</option>
+                <option value="fps">FPS</option>
+                <option value="aventura">Aventura</option>
+                <option value="sobrevivencia">Sobrevivência</option>
+                <option value="esportes">Esportes</option>
+                <option value="rpg">RPG</option>
+                <option value="estrategia">Estratégia</option>
             </select>
         </div>
         <div class="right-filters">
-            <select class="filter-select">
-                <option>Maior Avaliação</option>
-                <option>Menor Avaliação</option>
-                <option>Mais Avaliação</option>
-                <option>Menor preço</option>
-                <option>Maior preço</option>
+            <select id="ordenacao" class="filter-select" aria-label="Ordenar jogos">
+                <option value="maior-avaliacao">Maior Avaliação</option>
+                <option value="menor-avaliacao">Menor Avaliação</option>
+                <option value="mais-avaliacoes">Mais Avaliações</option>
+                <option value="menor-preco">Menor preço</option>
+                <option value="maior-preco">Maior preço</option>
             </select>
         </div>
 
@@ -94,6 +95,8 @@
             <span class="section-subtitle">Clique em um card para destacar ou avaliar</span>
         </div>
  
+        <p id="statusSteam" role="status" aria-live="polite"></p>
+        <button id="tentarSteam" class="filter-btn" type="button" hidden>Tentar Steam novamente</button>
         <div class="games-grid" id="gamesGrid">
  
             <!-- CARD 1 -->
@@ -182,7 +185,7 @@
                 <div class="card-content">
                     <h3 class="game-title">Fortnite</h3>
                     <div class="game-meta">
-                        <span class="game-platform">PC • PS5 • Xbox • PS4 • M</span>
+                        <span class="game-platform">PC • PS5 • Xbox • PS4 • Mobile</span>
                         <span class="game-price">R$00,00</span>
                     </div>
  
@@ -400,12 +403,12 @@
             <!-- CARD 13 -->
              <article class="card-game" data-id="13">
                 <div class="card-img-container">
-                    <img src="fotos_jogos/EFOOTBALL.jpg" alt="EA FC">
+                    <img src="fotos_jogos/EFOOTBALL.jpg" alt="eFootball">
                     <span class="badge-tag">Esportes/ Simulação</span>
                     <span class="rating-badge">★ 3.9</span>
                 </div>
                 <div class="card-content">
-                    <h3 class="game-title">EA FC</h3>
+                    <h3 class="game-title">eFootball</h3>
                     <div class="game-meta">
                         <span class="game-platform">PC • PS5 • Xbox • PS4  </span>
                         <span class="game-price">R$00,00</span>
@@ -473,6 +476,7 @@
             </article>
  
         </div>
+        <p id="mensagemSemResultados" class="filter-empty" hidden>Nenhum jogo encontrado para os filtros selecionados.</p>
     </main>
  
     <!-- MODAL DE AVALIAÇÃO (PRONTO PARA INTEGRAÇÃO FUTURA) -->
@@ -499,5 +503,6 @@
  
     <script src="config.js"></script>
     <script src="index.js"></script>
+    <script src="steam.js"></script>
 </body>
 </html>

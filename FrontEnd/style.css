@@ -522,6 +522,12 @@ body {
     gap: 24px;
 }
 
+.filter-empty {
+    margin-top: 24px;
+    color: #94a3b8;
+    text-align: center;
+}
+
 .card-game {
     display: flex;
     flex: 1 1 calc((100% - 48px) / 3);
@@ -1350,3 +1356,9 @@ body {
  
 
   
+
+/* hidden prevalece sobre o display flex dos cards. */
+[hidden] { display: none !important; }
+#statusSteam { color: #94a3b8; margin: 12px 0; }
+#tentarSteam { margin-bottom: 16px; }
+.steam-link { color: #c084fc; margin-bottom: 12px; }
