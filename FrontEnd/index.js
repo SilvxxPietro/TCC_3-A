@@ -55,7 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const porJogo = new Map(avaliacoes.map((avaliacao) => [String(avaliacao.id_jogo), avaliacao]));
         document.querySelectorAll(".card-game").forEach((card) => {
             const resumo = porJogo.get(card.dataset.id);
-            if (!resumo) return;
+            if (!resumo) {
+                card.querySelector('.rating-badge').textContent = 'Sem nota';
+                card.querySelector('.stars').textContent = '☆☆☆☆☆';
+                card.querySelector('.reviews-count').textContent = '(0 avaliações)';
+                return;
+            }
 
             const media = Number(resumo.media).toFixed(1);
             const quantidade = Number(resumo.quantidade).toLocaleString("pt-BR");

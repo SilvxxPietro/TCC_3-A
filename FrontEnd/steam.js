@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         retry.hidden = true;
         status.textContent = "Carregando jogos da Steam...";
         try {
-            const response = await fetch(`${window.API_BASE_URL}/jogos/steam`, { signal: AbortSignal.timeout(30000) });
+            const response = await fetch(`${window.API_BASE_URL}/jogos/steam`, { signal: AbortSignal.timeout(40000) });
             const data = await response.json();
             if (!response.ok) throw new Error("Steam indisponível");
             for (const jogo of data.jogos) {
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const card = document.createElement("article");
                 card.className = "card-game";
                 card.dataset.id = jogo.id;
+                card.dataset.steamId = jogo.steamId;
+                card.dataset.descricao = jogo.descricaoBreve || '';
                 card.dataset.preco = jogo.preco === null ? "indisponivel" : String(jogo.preco);
                 card.innerHTML = '<div class="card-img-container"><img loading="lazy"><span class="badge-tag"></span><span class="rating-badge">Sem nota</span></div><div class="card-content"><h3 class="game-title"></h3><div class="game-meta"><span class="game-platform"></span><span class="game-price"></span></div><div class="rating-box"><div class="stars">☆☆☆☆☆</div><span class="reviews-count">(0 avaliações)</span></div><a class="steam-link" target="_blank" rel="noopener noreferrer">Ver na Steam</a><button class="btn-card-action" type="button">⭐ Avaliar Jogo</button></div>';
                 card.querySelector("img").src = jogo.imagem;

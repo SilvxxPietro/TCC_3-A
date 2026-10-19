@@ -1,6 +1,9 @@
 const conexao = require("../database/conexao");
 
 const avaliacaoModel = {
+    listarPorJogo: (idJogo, callback) => {
+        conexao.query('SELECT nota, comentario, atualizado_em FROM avaliacao WHERE id_jogo = ? ORDER BY atualizado_em DESC LIMIT 50', [idJogo], callback);
+    },
     salvar: (idUsuario, idJogo, nota, comentario, callback) => {
         const sql = `
             INSERT INTO avaliacao (id_usuario, id_jogo, nota, comentario)
